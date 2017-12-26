@@ -242,7 +242,7 @@
     });
 
     /************************************
-     * dispatch_suspend 暂停
+     *13. dispatch_suspend 暂停
      * dispatch_resume 恢复
      * 当追加大量的dispatch queue 时，在追加处理的时候，有时希望不执行已追加的处理。例如演算结果被block 截获时，一些处理会对这个结果造成影响。
      * 在这种情况下，只要挂起dispatch queue 即可。 当执行时再恢复。
@@ -253,6 +253,72 @@
     
     //dispatch_resume 函数恢复指定的dispatch queue;
 //    dispatch_resume(queue);
+    
+    /************************************
+     *14. dispatch Semaphone 信号量
+     * 是持有计数的信号，该计数是多线程编程中的计数类型信号。所谓信号，类似于过马路时常用的手旗。可以通过时举起手旗，不可通过时放下手旗。而在Dispatch Semaphone 中，使用计数来实现该功能。计数为0时等待，计数为1或大于1时，减去1而不等待。
+     *
+     ************************************/
+    
+    //该源代码使用Global Dispatch Queue 更新NSMutableArray类对象，所以执行后由内存错误导致应用程序异常结束的概率很高。此时应用应该使用Dispatch Semaphone
+//    dispatch_queue_t queueSemaohone = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+//    NSMutableArray *array = [[NSMutableArray alloc] init];
+//    for (int i = 0; i < 100000; ++i) {
+//        dispatch_async(queueSemaohone, ^{
+//            [array addObject:[NSNumber numberWithInt:i]];
+//        });
+//    }
+    
+    
+    dispatch_queue_t queueSemaohone = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    
+    /**
+     生成Dispatch Semaphone
+     dispatch Semaphone 的计数初始值设定为 “1”。
+     保证可访问NSMumberArray 类对象的线程同时只能有1个。
+     */
+    dispatch_semaphore_t semaphone = dispatch_semaphore_create(1);
+    NSMutableArray *array = [[NSMutableArray alloc] init];
+    for (int i = 0; i < 100000; ++i) {
+        dispatch_async(queueSemaohone, ^{
+            /*
+             *等待 Dispatch Semaphore
+             *一直等待，直到Dispatch Semaphore 的计数值达到大于等于1.
+             */
+            dispatch_semaphore_wait(semaphone, DISPATCH_TIME_FOREVER);
+            /*
+             *由于Dispatch Semaphore 的计数达到大于等于1，所以将Dispatch semaphore 的计数减去1，由dispatch_semaphore_wait 函数执行返回。
+             *
+             *即执行到此时的Dispatch Semaphore 的计数恒为0；
+             *
+             *由此可访问NSMumberArray 类对象的线程只有一个，因此可安全地进行更新。
+             *
+             */
+            
+            [array addObject:[NSNumber numberWithInt:i]];
+            
+            /*
+             * 排他控制处理结束
+             *所以通过 dispatch_seamphone_signal 函数，将Dispatch Semaphore 的计数值加1。
+             *
+             *如果有通过dispatch_semaphone_wait函数,等待Dispatch Semaphore 的计数值增加的线程，就由最先等待的线程执行。
+             *
+             */
+            dispatch_semaphore_signal(semaphone);
+        });
+    }
+    
+    /************************************
+     * 15.dispatch_once
+     * 单例模式 在多线程环境下执行，也可保证百分之百安全。
+     ************************************/
+    
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        /*
+         * 初始化
+         */
+    });
     
     
     
