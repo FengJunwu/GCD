@@ -333,6 +333,9 @@
      */
     
     [self performSelectorOnMainThread:@selector(downWork) withObject:nil waitUntilDone:nil];
+    
+    
+//这是一个测试
 }
 
 /**
