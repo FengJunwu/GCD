@@ -15,8 +15,6 @@
 		ED0E79EF21B548310052805F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = ED0E79EE21B548310052805F /* main.m */; };
 		ED0E79F921B548310052805F /* GCDTests.m in Sources */ = {isa = PBXBuildFile; fileRef = ED0E79F821B548310052805F /* GCDTests.m */; };
 		ED0E7A0421B548310052805F /* GCDUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = ED0E7A0321B548310052805F /* GCDUITests.m */; };
-		ED79B64021C3C0B7007862CF /* CountyCode.plist in Resources */ = {isa = PBXBuildFile; fileRef = ED79B63F21C3C0B7007862CF /* CountyCode.plist */; };
-		ED79B64221C3C18F007862CF /* File.json in Resources */ = {isa = PBXBuildFile; fileRef = ED79B64121C3C18F007862CF /* File.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,8 +51,6 @@
 		ED0E79FF21B548310052805F /* GCDUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GCDUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED0E7A0321B548310052805F /* GCDUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GCDUITests.m; sourceTree = "<group>"; };
 		ED0E7A0521B548310052805F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		ED79B63F21C3C0B7007862CF /* CountyCode.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = CountyCode.plist; sourceTree = "<group>"; };
-		ED79B64121C3C18F007862CF /* File.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = File.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,12 +105,10 @@
 				ED0E79E021B548300052805F /* AppDelegate.m */,
 				ED0E79E221B548300052805F /* ViewController.h */,
 				ED0E79E321B548300052805F /* ViewController.m */,
-				ED79B64121C3C18F007862CF /* File.json */,
 				ED0E79E521B548300052805F /* Main.storyboard */,
 				ED0E79E821B548310052805F /* Assets.xcassets */,
 				ED0E79EA21B548310052805F /* LaunchScreen.storyboard */,
 				ED0E79ED21B548310052805F /* Info.plist */,
-				ED79B63F21C3C0B7007862CF /* CountyCode.plist */,
 				ED0E79EE21B548310052805F /* main.m */,
 			);
 			path = GCD;
@@ -244,8 +238,6 @@
 				ED0E79EC21B548310052805F /* LaunchScreen.storyboard in Resources */,
 				ED0E79E921B548310052805F /* Assets.xcassets in Resources */,
 				ED0E79E721B548300052805F /* Main.storyboard in Resources */,
-				ED79B64021C3C0B7007862CF /* CountyCode.plist in Resources */,
-				ED79B64221C3C18F007862CF /* File.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
