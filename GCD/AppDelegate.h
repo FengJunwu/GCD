@@ -2,8 +2,8 @@
 //  AppDelegate.h
 //  GCD
 //
-//  Created by JND on 2017/12/25.
-//  Copyright © 2017年 JND. All rights reserved.
+//  Created by 冯俊武 on 2018/12/3.
+//  Copyright © 2018 冯俊武. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
